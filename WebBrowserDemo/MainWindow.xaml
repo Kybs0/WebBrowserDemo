@@ -1,0 +1,31 @@
+﻿<Window x:Class="WebBrowserDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WebBrowserDemo"
+        xmlns:controls="clr-namespace:Microsoft.Toolkit.Wpf.UI.Controls;assembly=Microsoft.Toolkit.Wpf.UI.Controls.WebView"
+        xmlns:xamlHost="clr-namespace:Microsoft.Toolkit.Wpf.UI.XamlHost;assembly=Microsoft.Toolkit.Wpf.UI.XamlHost"
+        mc:Ignorable="d"
+        Title="浏览器Demo" Height="800" Width="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <ComboBox x:Name="WebControlTypeComboBox" SelectionChanged="WebControlTypeComboBox_OnSelectionChanged" VerticalAlignment="Center"
+                      Margin="20 0" Padding="20,6">
+                <ComboBoxItem x:Name="WinformItem" Content="Winform浏览器"></ComboBoxItem>
+                <ComboBoxItem Name="WPFItem" Content="WPF浏览器"></ComboBoxItem>
+                <ComboBoxItem Name="WebViewItem" Content="WebView浏览器"></ComboBoxItem>
+                <ComboBoxItem Name="WebViewCompatibleItem" Content="WebViewCompatible浏览器"></ComboBoxItem>
+            </ComboBox>
+            <Button Content="刷新" Click="RefreshButton_OnClick" VerticalAlignment="Center" Height="25" Width="60" HorizontalAlignment="Center"></Button>
+        </StackPanel>
+
+        <Border x:Name="BrowserGrid" Grid.Row="1">
+        </Border>
+       
+    </Grid>
+</Window>
