@@ -4,28 +4,29 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WebBrowserDemo"
-        xmlns:controls="clr-namespace:Microsoft.Toolkit.Wpf.UI.Controls;assembly=Microsoft.Toolkit.Wpf.UI.Controls.WebView"
-        xmlns:xamlHost="clr-namespace:Microsoft.Toolkit.Wpf.UI.XamlHost;assembly=Microsoft.Toolkit.Wpf.UI.XamlHost"
         mc:Ignorable="d"
-        Title="浏览器Demo" Height="800" Width="1200">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-            <ComboBox x:Name="WebControlTypeComboBox" SelectionChanged="WebControlTypeComboBox_OnSelectionChanged" VerticalAlignment="Center"
-                      Margin="20 0" Padding="20,6">
-                <ComboBoxItem x:Name="WinformItem" Content="Winform浏览器"></ComboBoxItem>
-                <ComboBoxItem Name="WPFItem" Content="WPF浏览器"></ComboBoxItem>
-                <ComboBoxItem Name="WebViewItem" Content="WebView浏览器"></ComboBoxItem>
-                <ComboBoxItem Name="WebViewCompatibleItem" Content="WebViewCompatible浏览器"></ComboBoxItem>
-            </ComboBox>
-            <Button Content="刷新" Click="RefreshButton_OnClick" VerticalAlignment="Center" Height="25" Width="60" HorizontalAlignment="Center"></Button>
-        </StackPanel>
+        Title="浏览器Demo" x:Name="TheMainWindow" Height="300" Width="500"
+        BorderBrush="#D0D1D6" ShowInTaskbar="True" 
+        WindowStartupLocation="CenterScreen">
+    <Border BorderBrush="Gainsboro" BorderThickness="1">
+        <Grid Background="White" ClipToBounds="True" WindowChrome.IsHitTestVisibleInChrome="True">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="20">
+                    <RadioButton x:Name="DefaultStyleButton" Content="默认样式" Margin="5,0" IsChecked="True"></RadioButton>
+                    <RadioButton x:Name="TransparentStyleButton" Content="透明窗口样式" Margin="5,0"></RadioButton>
+                </StackPanel>
+                <ComboBox x:Name="WebControlTypeComboBox" VerticalAlignment="Center"
+                          Margin="20" Padding="20,6" Width="200" HorizontalAlignment="Center">
+                    <ComboBoxItem x:Name="WinformItem" Content="Winform浏览器"></ComboBoxItem>
+                    <ComboBoxItem Name="WPFItem" Content="WPF浏览器"></ComboBoxItem>
+                    <ComboBoxItem Name="WebViewItem" Content="WebView浏览器"></ComboBoxItem>
+                    <ComboBoxItem Name="WebViewCompatibleItem" Content="WebViewCompatible浏览器"></ComboBoxItem>
+                </ComboBox>
+                <Button x:Name="OpenButton" Content="显示浏览器窗口" Click="OpenButton_OnClick" 
+                                                        Margin="20" Height="25" VerticalAlignment="Center" 
+                                                        HorizontalAlignment="Center"></Button>
+            </StackPanel>
+        </Grid>
+    </Border>
 
-        <Border x:Name="BrowserGrid" Grid.Row="1">
-        </Border>
-       
-    </Grid>
 </Window>

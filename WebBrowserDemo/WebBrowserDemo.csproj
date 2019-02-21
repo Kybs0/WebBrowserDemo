@@ -14,6 +14,8 @@
     <WarningLevel>4</WarningLevel>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,12 +36,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Toolkit.Wpf.UI.Controls.WebView, Version=6.0.0.0, Culture=neutral, PublicKeyToken=4aff67a105548ee2, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Toolkit.Wpf.UI.Controls.WebView.6.0.0-preview1\lib\net462\Microsoft.Toolkit.Wpf.UI.Controls.WebView.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Toolkit.Wpf.UI.XamlHost, Version=6.0.0.0, Culture=neutral, PublicKeyToken=4aff67a105548ee2, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Toolkit.Wpf.UI.XamlHost.6.0.0-preview1\lib\net462\Microsoft.Toolkit.Wpf.UI.XamlHost.dll</HintPath>
+    <Reference Include="NetDimension.NanUI, Version=3.3239.1723.31518, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetDimension.NanUI.0.7.3239-pre\lib\NetDimension.NanUI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -66,6 +71,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="WPFBrowserWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinformBrowserWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UWPCompatibleBrowserWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UWPBrowserWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -73,6 +94,20 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WPFBrowserWindow.xaml.cs">
+      <DependentUpon>WPFBrowserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinformBrowserWindow.xaml.cs">
+      <DependentUpon>WinformBrowserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UWPCompatibleBrowserWindow.xaml.cs">
+      <DependentUpon>UWPCompatibleBrowserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IniFileHelper.cs" />
+    <Compile Include="ControlHelper.cs" />
+    <Compile Include="UWPBrowserWindow.xaml.cs">
+      <DependentUpon>UWPBrowserWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -97,6 +132,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.manifest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -107,4 +143,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\NetDimension.NanUI.Cef3239.3.3239.1723.0\build\NetDimension.NanUI.Cef3239.targets" Condition="Exists('..\packages\NetDimension.NanUI.Cef3239.3.3239.1723.0\build\NetDimension.NanUI.Cef3239.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NetDimension.NanUI.Cef3239.3.3239.1723.0\build\NetDimension.NanUI.Cef3239.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NetDimension.NanUI.Cef3239.3.3239.1723.0\build\NetDimension.NanUI.Cef3239.targets'))" />
+  </Target>
 </Project>
